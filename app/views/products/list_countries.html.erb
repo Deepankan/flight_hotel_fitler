@@ -1,3 +1,8 @@
+<div id="loading-indicator">
+ <%= image_tag("/assets/loading_new.gif", :id => "loading-indicator") %>
+</div>
+
+<div class="load-ajax"></div>
 <h1>Please Select the desired Country</h1>
 
 <%= form_tag get_hotels_path, :remote => true do |f| %>
@@ -7,10 +12,36 @@
    <b>Check Out Date: </b><%= date_field_tag "check_out_date", (Date.today+1)%>
   </div> <br />
   <div class="actions" style="margin-left: 118px;">
-     <%= link_to "Back", root_path %>
-    <%= submit_tag "Search" %>
+    <%= link_to "Back", root_path, class: 'hide_button' %>
+    <%= submit_tag "Search", :class => 'hide_button' %>
   </div>
 <% end %>
 <div class="row" id="filter_hotel">
 
 </div>
+
+<style type="text/css">
+
+#loading-indicator {
+    position: fixed;
+    left: 409px;
+    top: 200px;
+    width: 25%;
+    height: 51%
+ }
+</style>
+<script type="text/javascript">
+$(function() {
+  $('#loading-indicator')
+    .hide()  // hide it initially.
+  
+ $(document).ajaxStart(function() {
+        $('#loading-indicator').show();
+        $('.hide_button').attr('disabled',true)
+   });
+   $(document).ajaxStop(function() {
+        $('#loading-indicator').hide();
+        $('.hide_button').attr('disabled',false)
+   });
+});
+</script>
