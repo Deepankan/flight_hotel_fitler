@@ -6,3 +6,21 @@ development:
   username: 'root'
   password: 'root'
   host: localhost
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: test_new
+  port: 5432
+  username: 'root'
+  password: 'root'
+  host: localhost
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: test_new
+  port: 5432
+  username: 'root'
+  password: 'root'
+  host: localhost
