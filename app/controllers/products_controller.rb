@@ -80,7 +80,7 @@ require 'rest-client'
     # {:request=>{:slice=>[{:origin=>"BLR", :destination=>"HYD", :date=>"03/04/2016"}], :passengers=>{:adultCount=>1, :infantInLapCount=>0, :infantInSeatCount=>0, :childCount=>0, :seniorCount=>0}}}
 
     response ={:request=>{:slice=>[{:origin=> params[:origin], :destination=> params[:destination], :date=> params[:date]}], :passengers=>{:adultCount=>1, :infantInLapCount=>0, :infantInSeatCount=>0, :childCount=>0, :seniorCount=>0}}}
-    result = RestClient.post 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyCziVpDZFoqqCrGyL6mbC4S6GTqtPToOVQ',response.to_json,:content_type => :json
+    result = RestClient.post "https://www.googleapis.com/qpxExpress/v1/trips/search?key=#{API_FLIGHT_KEY}",response.to_json,:content_type => :json
     @result = JSON.parse(result)
     
      @list_airport = {}
