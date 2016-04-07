@@ -108,10 +108,10 @@ require 'rest-client'
   def get_hotels
     
     #loc = { :location_id => params['selected_country'], :check_in => params['check_in_date'], :check_out => params['check_out_date'],:user_ip=>'direct'}
-    #sleep(15.seconds)
+    #sleep(10.seconds)
     result = RestClient.get "http://api.wego.com/hotels/api/search/new?key=#{API_HOTEL_KEY}&ts_code=#{API_HOTEL_SECRET}&location_id=#{params['selected_country']}&check_in= #{params['check_in_date']}&check_out=#{params['check_out_date']}&user_ip=direct"
     @result = JSON.parse(result)
-    #sleep(15.seconds)
+    sleep(10.seconds)
     list_hotel = RestClient.get "http://api.wego.com/hotels/api/search/#{@result['search_id']}?key=#{API_HOTEL_KEY}&ts_code=#{API_HOTEL_SECRET}"
     
     @list_hotel = JSON.parse(list_hotel)
