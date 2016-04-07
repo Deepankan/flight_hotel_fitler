@@ -1,0 +1,35 @@
+<h1>List Of Flight</h1>
+<div class="row">
+<b><%= link_to "Search", root_path%></b><br /><br /><br />
+</div>
+<% @result['trips']['tripOption'].each do |h|%>
+<div class="row">
+  <label>Price :</label><b><%= h['saleTotal']%></b><br />
+ <% h['slice'].each do |k|%>
+ 
+    <% k['segment'].each do |s|%>
+    
+     <label>Flight Name</label> :<b> <%= s['flight']['carrier'] + "" + s['flight']['number']%>&nbsp;&nbsp;&nbsp;<%= @list_carrier[s['flight']['carrier']]%></b><br />
+     <label> Duration : </label> <b><%= k['duration']%></b><br />
+     <%s['leg'].each do |p|%>
+      <div class="row">
+      <label>Origin : </label><b><%= p['origin']%>&nbsp;&nbsp;&nbsp;<%= @list_city[p['origin']]%></b><br />
+      <label>Destination : </label><b><%= p['destination']%>&nbsp;&nbsp;&nbsp;<%= @list_city[p['destination']]%></b><br />
+      <label>Origin Airpot : </label> <b><%= @list_airport[p['origin']]%></b><br />
+     <label> Destination Airpot : </label><b><%= @list_airport[p['destination']]%></b><br />
+      <label>Arrival Time : </label><b><%= p['arrivalTime']%></b><br />
+      <label>Departure Time : </label><b><%= p['departureTime']%></b><br />
+     <label> Duration : </label><b><%= (p['duration'].to_f / 60).round(3)%>hours</b><br /></div>
+     <%end%>
+     <% if s['connectionDuration']%>
+     <label><i>Connection Duration(Connecting Flight) : </i></label><b><%= (s['connectionDuration'].to_f/60).round(3)%>hours</b><br />
+     <%end%>
+    <%end%>
+
+ <%end%>
+ <br /><br />
+</div>
+<%end%>
+<div class="row" >
+<%= link_to "Back", root_path%>
+</div>

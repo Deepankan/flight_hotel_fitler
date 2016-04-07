@@ -1,0 +1,16 @@
+<h1>Please Select the desired Country</h1>
+
+<%= form_tag get_hotels_path, :remote => true do |f| %>
+  <div class="row">
+   <b>I want to go </b><%= select_tag "selected_country", options_for_select(@location)%>
+   <b>Check In Date: </b><%= date_field_tag "check_in_date", Date.today%>
+   <b>Check Out Date: </b><%= date_field_tag "check_out_date", (Date.today+1)%>
+  </div> <br />
+  <div class="actions" style="margin-left: 118px;">
+     <%= link_to "Back", root_path %>
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+<div class="row" id="filter_hotel">
+
+</div>

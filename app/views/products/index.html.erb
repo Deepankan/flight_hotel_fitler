@@ -1,0 +1,66 @@
+<!-- <p id="notice"><%= notice %></p>
+
+<h1>Listing Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    < % @products.each do |product| %>
+      <tr>
+        <td>< %= link_to 'Show', product %></td>
+        <td>< %= link_to 'Edit', edit_product_path(product) %></td>
+        <td>< %= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    < % end %>
+  </tbody>
+</table>
+
+<br>
+
+< %= link_to 'New Product', new_product_path %>
+ -->
+ <h1>Search Products</h1>
+
+ 
+
+ <%= form_tag list_product_path do |f| %>
+  <b>Enter the Product :  </b><%= text_field_tag "search" %>
+  <br /> <br />
+  <div class="actions" style="margin-left: 118px;">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+<br /> <br /><br />
+
+<h1>Search Flight</h1>
+
+ <%= form_tag list_flights_path do |f| %>
+  <div class="row">
+   <b>Departure City:</b><%= text_field_tag "origin" %>
+   <b>Destination City:</b><%= text_field_tag "destination" %>
+   <b>Date: </b><%= date_field_tag "date", Date.today%>
+  </div> <br />
+  <div class="actions" style="margin-left: 118px;">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+
+<br /> <br /><br />
+ 
+ <h1>Search Hotels</h1>
+
+ <%= form_tag list_countries_path do |f| %>
+  <div class="row">
+   <b>Enter City :</b><%= text_field_tag "search_country" %>
+   <b>Check In Date: </b><%= date_field_tag "check_in_date", Date.today%>
+   <b>Check Out Date: </b><%= date_field_tag "check_out_date", (Date.today+1)%>
+  </div> <br />
+  <div class="actions" style="margin-left: 118px;">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>

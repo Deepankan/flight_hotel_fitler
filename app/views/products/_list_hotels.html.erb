@@ -1,0 +1,32 @@
+<div class= 'row'>
+<label>Location  :</label> <b><%= @list_hotel['location']%></b><br />
+<label>Min Price  :</label> <b><%= @list_hotel['rates']['min']['price'].to_s+@list_hotel['rates']['min']['currency_code']%></b><br />
+<label>Max Price  :</label><b> <%= @list_hotel['rates']['max']['price'].to_s+@list_hotel['rates']['min']['currency_code']%></b><br />
+</div>
+<br /> <br /> <br />
+<% @list_hotel['hotels'].each do |k|%>
+<div class="row">
+<label>Name : </label><b><%= k['name']%></b><br />
+<label>Address : </label><b><%= k['address']%></b><br />
+<label>District : </label><b><% k['districts'].each do |h| %>
+                               <%= @list_district[h.to_i]%>
+                              <%end%>
+                           </b><br />
+<label>Description : </label><b><%= k['desc']%></b><br />
+<label>Images : </label><%= image_tag k['image']%><br />
+<label>Star : </label><b><%= k['star']%></b><br />
+<label> Rank : </label><b><%= k['rank']%></b><br />
+<label>Available On :</label><br />
+<% k['room_rates'].each do |h|%>
+<div class= "row"></div>
+<label> Provider Name  : </label><b>
+
+<%= link_to h['provider_name'], "http://#{h['provider_name']}", :target => "_blank" %></b><br />
+<label> Price  : </label><b><%= h['price_str'].to_s + h['currency_sym']%></b><br />
+<%end%>
+<label> Total Review  : </label><b><%= k['total_reviews']%></b><br />
+<label> Possitive Review  : </label><b><%= k['positive']%></b><br />
+<label> Negative Review  : </label><b><%= k['negative']%></b><br />
+<label> Neutral Review  : </label><b><%= k['neutral']%></b><br />
+</div><br /><br /><br />
+<%end%> 

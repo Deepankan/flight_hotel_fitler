@@ -1,0 +1,45 @@
+<table>
+
+<thead>
+	<tr>
+
+		<th>Brand</th>
+		<th>Name</th>
+		<th>Price</th>
+		<th>Price Currency</th>
+		<th>Model</th>
+		<th>Category</th>
+		<th colspan="2">Site Details</th>
+		<th colspan="4">Features</th>
+
+	</tr>
+
+</thead>
+<tbody>
+       <% @productsHash.each do |k|%>
+          <tr>
+              <td><%= k['brand']%></td> 
+              <td><%= k['name']%></td> 
+              <td><%= k['price']%></td> 
+              <td><%= k['price_currency']%></td> 
+              <td><%= k['model']%></td> 
+             <td><%= k['category']%></td>
+              <% if k['sitedetails'].present?%>
+                <% k['sitedetails'].each do |g|%>
+              	<td>Name : <%= g['name']%></td> 
+              	<%end%>
+              <%else%>
+              	<td>-</td>
+              	<td>-</td>
+              <%end%>
+               <% if k['features'].present?%>
+              	<% k['features'].each do |p,v|%>
+              	<td><b><%= p%></b> : <%= v%></td> 
+              	<%end%>
+              <%else%>
+              	<td>-</td>
+              <%end%>
+          </tr>
+       <%end%>
+</tbody>
+</table>
