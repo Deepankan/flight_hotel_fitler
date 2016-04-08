@@ -7,6 +7,7 @@ require 'rest-client'
   # GET /products.json
   def index
     @products = Product.all
+    @seatingclass = {'Economy' => 'E','Bussiness Class' => 'B'}
   end
 
   # GET /products/1
@@ -119,6 +120,42 @@ require 'rest-client'
     @list_district = {}
     @list_hotel['districts'].each {|h| @list_district[h['id'].to_i] = h['name']}
   end  
+  def go_search_flights
+   params['dep_date']  = params['dep_date'].gsub("-","")
+   params['return_date'] =  params['return_date'].gsub("-","") if params['return_date']
+   params['children'] = params['children'].present? ? params['children'] : 0
+   params['infants'] = params['infants'].present? ? params['infants'] : 0
+ 
+  if params['trip'] == 'one_way'
+    result = RestClient.get "http://developer.goibibo.com/api/search/?app_id=#{API_APP_ID_GOIBIBO}&app_key=#{API_APP_KEY_GOIBIBO}&format=json&source=#{params['origin']}&destination=#{params['destination']}&dateofdeparture=#{params['dep_date']}&seatingclass=#{params['seatingclass']}&adults=#{params['adults']}&children=#{params['children']}&infants=#{params['infants']}"
+  else
+    result = RestClient.get "http://developer.goibibo.com/api/search/?app_id=#{API_APP_ID_GOIBIBO}&app_key=#{API_APP_KEY_GOIBIBO}&format=json&source=#{params['origin']}&destination=#{params['destination']}&dateofdeparture=#{params['dep_date']}&dateofarrival=#{params['return_date']}&seatingclass=#{params['seatingclass']}&adults=#{params['adults']}&children=#{params['children']}&infants=#{params['infants']}"
+  end
+  @result = JSON.parse(result)  
+ 
+ end 
+
+ def get_min_price_flights
+   params['return_date'] = params['return_date'].present? ? params['return_date'] : params['dep_date']
+   params['dep_date']  = params['dep_date'].gsub("-","")
+   params['return_date'] =  params['return_date'].gsub("-","")   
+   result = RestClient.get "http://developer.goibibo.com/api/stats/minfare/?app_id=#{API_APP_ID_GOIBIBO}&app_key=#{API_APP_KEY_GOIBIBO}&format=json&vertical=flight&source=#{params['origin']}&destination=#{params['destination']}&mode=all&sdate=#{params['dep_date']}&edate=#{params['return_date']}&seatingclass=#{params['seatingclass']}"
+   
+   @result = JSON.parse(result)
+ end
+
+ def get_list_bus
+
+   params['dep_date']  = params['dep_date'].gsub("-","")
+   params['return_date'] =  params['return_date'].gsub("-","") if params['return_date']
+   if params['trip_bus'] == 'one_way_bus'
+    result = RestClient.get "http://developer.goibibo.com/api/bus/search/?app_id=#{API_APP_ID_GOIBIBO}&app_key=#{API_APP_KEY_GOIBIBO}&format=json&source=#{params['origin']}&destination=#{params['destination']}&dateofdeparture=#{params['dep_date']}"
+   else
+    result = RestClient.get "http://developer.goibibo.com/api/bus/search/?app_id=#{API_APP_ID_GOIBIBO}&app_key=#{API_APP_KEY_GOIBIBO}&format=json&source=#{params['origin']}&destination=#{params['destination']}&dateofdeparture=#{params['dep_date']}&dateofarrival=#{params['return_date']}"
+   end
+   @result = JSON.parse(result)  
+ end  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

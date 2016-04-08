@@ -1,0 +1,37 @@
+<h1>One Way Flight</h1>
+<%@result['data']['onwardflights'].each do |k|%>
+		<div class="row">
+			 <label> Origin :</label><b><%= k['origin']%></b>&nbsp;&nbsp;
+			 <label> Destination :</label><b><%= k['destination']%></b><br / >
+
+			 <label> Departure Time :</label><b><%= k['DepartureTime']%></b><br / >
+			 <label> Arrival Time :</label><b><%= k['ArrivalTime']%></b><br / >
+
+			 <label> Total Duration :</label><b><%= k['duration']%></b>&nbsp;&nbsp;
+			  <label> Flight Time :</label><b><%= k['flighttime']%></b><br / >
+
+			 <label> Total Price :</label><b><%= k['PricingSolution']['TotalPrice']%></b><br / >
+			
+			  <label> Flight No :</label><b><%= k['platingcarrier']%></b>&nbsp;&nbsp;
+              <label> Airline :</label><b><%= k['airline']%></b><br / >
+			 
+
+			 <label> Stops :</label><b><%= k['stops']%></b>
+			
+			  <label> Seats Available :</label><b><%= k['seatsavailable']%></b><br / >
+			
+		 <% if k['onwardflights']%>
+		     <label> Split Duration :</label><b><%= k['splitduration']%></b><br / ><br / >
+			  <%  k['onwardflights'].each do |h|%>
+				 <label> Origin :</label><b><%= h['origin']%></b>&nbsp;&nbsp;
+				  <label> Destination :</label><b><%= h['destination']%></b><br / >
+				  <label> Departure Time :</label><b><%= h['DepartureTime']%></b><br />
+			      <label> Arrival Time :</label><b><%= h['ArrivalTime']%></b><br / >
+				  
+				  <label> Flight Code :</label><b><%= h['flightcode']%></b>&nbsp;&nbsp;
+				 <label> Carrier :</label><b><%= h['carrierid']%></b><br / >
+		       <%end%>
+		 <%end%>
+		 <br / ><br / ><br / >
+		</div>
+<%end%>

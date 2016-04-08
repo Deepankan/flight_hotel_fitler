@@ -1,0 +1,11 @@
+<h1>Mininum Price between Given TIme Range</h1>
+<%@result.each do |k,h|%>
+<div class="row">
+<label>Type Of Travel : </label><b><%= h["typeoftravel"]%></b><br />
+<label>Orign : </label><b><%= h["source"]%></b><br />
+<label>Destination : </label><b><%= h["destination"]%></b><br />
+<label>Extra Inf : </label><b><%= h["extra"].gsub('{',"").gsub('}',"").gsub("[","").gsub("]","")%></b><br />
+<label>Carrier : </label><b><%= h["carrier"]%></b><br />
+<label>Date : </label><b><%= h["date"]%></b><br />
+</div><br /><br />
+<%end%>

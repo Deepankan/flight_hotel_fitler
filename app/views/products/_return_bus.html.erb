@@ -1,0 +1,50 @@
+<h1>Return Bus BUS</h1>
+
+<%@result['data']['returnflights'].each do |k|%>
+		<div class="row">
+		     <label> Service :</label><b><%= k['ServiceName']%></b>&nbsp;&nbsp;
+			 <label> Travels Name :</label><b><%= k['TravelsName']%></b><br / >
+
+			 <label> Origin :</label><b><%= k['origin']%></b>&nbsp;&nbsp;
+			 <label> Destination :</label><b><%= k['destination']%></b><br / >
+
+			 <label> Departure Time :</label><b><%= k['depdate']%></b><br / >
+			 <label> Arrival Time :</label><b><%= k['arrdate']%></b><br / >
+
+			 <label> Total Duration :</label><b><%= k['duration']%></b>&nbsp;&nbsp;
+			  <label> Flight Time :</label><b><%= k['flighttime']%></b><br / >
+
+			 <label> Total Price :</label><b><%= k['fare']['totalfare']%></b><br / >
+			
+			  <b><label>Bus Detail : </label></b><br/ >
+			  <label> Bus Condition :</label>
+              <%k['RouteSeatTypeDetail']['list'].each do |m|%>
+              <label> BUS Condition :</label><b><%= m['busCondition']%></b>
+              <label> Seat Type :</label><b><%= m['seatType']%></b>
+              <label> Seats Available :</label><b><%= m['SeatsAvailable']%></b>  <br />
+              <%end%>
+			  <br />&nbsp;&nbsp;
+              <label> Rating :</label><b><%= k['rating']%></b><br / >
+			 
+
+			
+			<label><b>Boarding Point</b></label><br />
+		
+			 <% if k['BPPrims']%>
+
+				  <%  k['BPPrims']['list'].each do |h|%>
+					 <label> Location :</label><b><%= h['BPLocation']%></b>&nbsp;&nbsp;
+					  <label> Time :</label><b><%= h['BPTime']%></b><br / >
+			       <%end%>
+			 <%end%><br /><br />
+           	<label><b>Dropping  Point</b></label><br />
+			 <% if k['DPPrims']%>
+
+				  <%  k['DPPrims']['list'].each do |h|%>
+					 <label> Location :</label><b><%= h['DPLocation']%></b>&nbsp;&nbsp;
+					  <label> Time :</label><b><%= h['DPTime']%></b><br / >
+			       <%end%>
+			 <%end%>
+		 <br / ><br / ><br / >
+		</div>
+<%end%>
