@@ -177,7 +177,13 @@ require 'rest-client'
   
   result = RestClient.get "http://developer.goibibo.com/api/cyclone/?app_id=#{API_APP_ID_GOIBIBO}&app_key=#{API_APP_KEY_GOIBIBO}&city_id=#{city_id}&check_in=#{params['dep_date']}&check_out=#{params['return_date']}"
   @result = JSON.parse(result)   
-  binding.pry
+  @key_hotel = {}
+  @hotel_name['data'].each do |k,v|
+     @key_hotel[k] = {'name' => v['hotel_geo_node']['name'], 'rating' => v['hotel_data_node']['rating'],'facilities' => (v['hotel_data_node']['facilities']['mapped'] if v['hotel_data_node']['facilities']),'city' => v['hotel_data_node']['loc']['city'], 'country' => v['hotel_data_node']['loc']['country'], 'state'=> v['hotel_data_node']['loc']['state'],'location' => v['hotel_data_node']['loc']['location'],'img' => (v['hotel_data_node']['img_selected']['thumb']['l'] if v['hotel_data_node']['img_selected'])}
+  end  
+  @result['data'].each do |k,v|
+    @key_hotel[k]['price'] = v['mp']
+  end  
   end 
   private
     # Use callbacks to share common setup or constraints between actions.

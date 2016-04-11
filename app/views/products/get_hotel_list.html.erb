@@ -1,0 +1,19 @@
+<h1>Hotel Listing</h1>
+<% @key_hotel.each do |k,v|%>
+<div class="row">
+<label> Name : </label><b><%= v['name']%></b><br />
+<label> Rating : </label><b><%= v['rating']%></b><br />
+<label> Price : </label><b><% if v['price'].present?%>
+<%=  v['price'] %>
+<%else%>
+<label style="color: red;">We are sold out..</label>
+<%end%></b><br />
+
+<label> Facilities : </label><b><%= v['facilities'].join(",") if v['facilities']%></b><br />
+<label> Location : </label><b><%= v['location']%></b><br />
+<label> City : </label><b><%= v['city']%></b><br />
+<label> State : </label><b><%= v['state']%></b><br />
+<label> Country : </label><b><%= v['country']%></b><br />
+<label> Image : </label><b><%= image_tag v['img'] if v['img']%></b><br />
+</div><br /><br />
+<%end%>
