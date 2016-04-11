@@ -24,50 +24,7 @@
 
 < %= link_to 'New Product', new_product_path %>
  -->
-<div class='row'>
-
- <h1>Search Products through Semantic3 API</h1>
-
- 
-
- <%= form_tag list_product_path do |f| %>
-  <b>Enter the Product :  </b><%= text_field_tag "search" %>
-  <br /> <br />
-  <div class="actions" style="margin-left: 118px;">
-    <%= submit_tag "Search" %>
-  </div>
-<% end %>
-<br /> <br /><br />
-
-<h1>Search Flight through Google API</h1>
-
- <%= form_tag list_flights_path do |f| %>
-  <div class="row">
-   <b>Departure City:</b><%= text_field_tag "origin" %>
-   <b>Destination City:</b><%= text_field_tag "destination" %>
-   <b>Date: </b><%= date_field_tag "date", Date.today%>
-  </div> <br />
-  <div class="actions" style="margin-left: 118px;">
-    <%= submit_tag "Search" %>
-  </div>
-<% end %>
-
-<br /> <br /><br />
- 
- <h1>Search Hotels throug wan.travel</h1>
-
- <%= form_tag list_countries_path do |f| %>
-  <div class="row">
-   <b>Enter City :</b><%= text_field_tag "search_country" %>
-   <b>Check In Date: </b><%= date_field_tag "check_in_date", Date.today%>
-   <b>Check Out Date: </b><%= date_field_tag "check_out_date", (Date.today+1)%>
-  </div> <br />
-  <div class="actions" style="margin-left: 118px;">
-    <%= submit_tag "Search" %>
-  </div>
-<% end %>
-</div>
-<div class="row"><h1> Goibibo APIS</h1><br /><br />
+ <div class="row"><h1> Goibibo APIS</h1><br /><br />
  <h1>Flight Search</h1>
   <%= form_tag go_search_flights_path do |f| %>
   <div class="row">
@@ -105,7 +62,6 @@
   </div>
 <% end %>
 
-</div>
 <br /><br /><br />
 <h1>Search Bus</h1>
   <%= form_tag get_list_bus_path do |f| %>
@@ -122,7 +78,70 @@
   </div>
 <% end %>
 
+<br /><br /><br />
+<!-- <h1>Search Hotel</h1>
+  < %= form_tag get_hotel_list_path do |f| %>
+   <div class="row">
+  
+   <b>Enter City:</b>< %= text_field_tag "city" %><br />
+     <b>Check In Date: </b>< %= date_field_tag "dep_date", Date.today%>
+   <b>Check Out Date: </b>< %= date_field_tag "return_date", Date.today+1%><br /><br />
+ 
+  </div> <br />
+  <div class="actions" style="margin-left: 118px;">
+    < %= submit_tag "Search" %>
+  </div>
+< % end %> -->
 </div>
+
+<div class='row'>
+
+
+
+<h1>Search Flight through Google API</h1>
+
+ <%= form_tag list_flights_path do |f| %>
+  <div class="row">
+   <b>Departure City:</b><%= text_field_tag "origin" %>
+   <b>Destination City:</b><%= text_field_tag "destination" %>
+   <b>Date: </b><%= date_field_tag "date", Date.today%>
+  </div> <br />
+  <div class="actions" style="margin-left: 118px;">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+
+<br /> <br /><br />
+ 
+ <h1>Search Hotels throug wan.travel</h1>
+
+ <%= form_tag list_countries_path do |f| %>
+  <div class="row">
+   <b>Enter City :</b><%= text_field_tag "search_country" %>
+   <b>Check In Date: </b><%= date_field_tag "check_in_date", Date.today%>
+   <b>Check Out Date: </b><%= date_field_tag "check_out_date", (Date.today+1)%>
+  </div> <br />
+  <div class="actions" style="margin-left: 118px;">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+
+ <h1>Search Products through Semantic3 API</h1>
+
+ 
+
+ <%= form_tag list_product_path do |f| %>
+  <b>Enter the Product :  </b><%= text_field_tag "search" %>
+  <br /> <br />
+  <div class="actions" style="margin-left: 118px;">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+<br /> <br /><br />
+</div>
+
+
+
 
 
 

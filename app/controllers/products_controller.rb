@@ -27,17 +27,28 @@ require 'rest-client'
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    #@product = Product.new(product_params)
 
-    respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+    # respond_to do |format|
+    #   if @product.save
+    #     format.html { redirect_to @product, notice: 'Product was successfully created.' }
+    #     format.json { render :show, status: :created, location: @product }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @product.errors, status: :unprocessable_entity }
+    #   end
+    # end
+     uploaded_io = params['product'][:file]
+    Dir.mkdir(File.join("#{Rails.root}/public", "csv_files"), 0777) unless Dir.exists?("#{Rails.root}/public/csv_files")
+    filename = Rails.root.join('public/csv_files',params['product'][:file].original_filename())
+    File.open(filename, 'wb') do |file|
+      file.write(uploaded_io.read)
     end
+     short_file_name = params['product'][:file].original_filename
+    qry =  "load data local infile '#{filename}' into table cities  fields TERMINATED BY ','  ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 ROWS (city_name,city_id,domestic_flag)  set file_name='#{short_file_name}'"
+    upload_file= "COPY cities FROM '#{filename}' DELIMITER ',' CSV"
+    ActiveRecord::Base.connection.execute(upload_file)
+    redirect_to root_path
   end
 
   # PATCH/PUT /products/1
@@ -155,7 +166,16 @@ require 'rest-client'
    end
    @result = JSON.parse(result)  
  end  
-
+  def get_hotel_list
+   params['dep_date']  = params['dep_date'].gsub("-","")
+   params['return_date'] =  params['return_date'].gsub("-","")   
+   city_id = City.find_by_city_name(params[:city]).city_id
+  get_name_result = RestClient.get "http://developer.goibibo.com/api/voyager/get_hotels_by_cityid/?app_id=#{API_APP_ID_GOIBIBO}&app_key=#{API_APP_KEY_GOIBIBO}&city_id=#{city_id}"
+  @hotel_name = JSON.parse(get_name_result)   
+  result = RestClient.get "http://developer.goibibo.com/api/voyager/get_hotels_by_cityid/?app_id=#{API_APP_ID_GOIBIBO}&app_key=#{API_APP_KEY_GOIBIBO}&city_id=#{city_id}&check_in=#{params['dep_date']}&check_out=#{params['return_date']}"
+  @result = JSON.parse(result)   
+  binding.pry
+  end 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

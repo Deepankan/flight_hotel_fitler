@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'products/get_min_price_flights' => 'products#get_min_price_flights', :as => "get_min_price_flights"
   post 'products/go_search_flights' => 'products#go_search_flights', :as => "go_search_flights"
   post 'products/get_list_bus' => 'products#get_list_bus', :as => "get_list_bus"
+  post 'products/get_hotel_list' => 'products#get_hotel_list', :as => "get_hotel_list"
   
   #post 'products/go_min_price_flights' => 'products#go_min_price_flights', :as => "go_min_price_flights"
   resources :products
