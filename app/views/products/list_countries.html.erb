@@ -1,6 +1,6 @@
-<div id="loading-indicator">
- <%= image_tag("/assets/loading_new.gif", :id => "loading-indicator") %>
-</div>
+<!-- <div id="loading-indicator">
+ < %= image_tag("/assets/loading_new.gif", :id => "loading-indicator") %>
+</div> -->
 
 <div class="load-ajax"></div>
 <h1>Please Select the desired Country</h1>
@@ -32,6 +32,7 @@
  }
 </style>
 <script type="text/javascript">
+ $('#loading-indicator').hide()
 $(function() {
   $('#loading-indicator')
     .hide()  // hide it initially.

@@ -177,7 +177,7 @@ require 'rest-client'
   
   result = RestClient.get "http://developer.goibibo.com/api/cyclone/?app_id=#{API_APP_ID_GOIBIBO}&app_key=#{API_APP_KEY_GOIBIBO}&city_id=#{city_id}&check_in=#{params['dep_date']}&check_out=#{params['return_date']}"
   @result = JSON.parse(result)   
-
+  binding.pry
   end 
   private
     # Use callbacks to share common setup or constraints between actions.
