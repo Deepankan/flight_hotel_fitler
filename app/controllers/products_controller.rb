@@ -142,7 +142,8 @@ require 'rest-client'
   else
     result = RestClient.get "http://developer.goibibo.com/api/search/?app_id=#{API_APP_ID_GOIBIBO}&app_key=#{API_APP_KEY_GOIBIBO}&format=json&source=#{params['origin']}&destination=#{params['destination']}&dateofdeparture=#{params['dep_date']}&dateofarrival=#{params['return_date']}&seatingclass=#{params['seatingclass']}&adults=#{params['adults']}&children=#{params['children']}&infants=#{params['infants']}"
   end
-  @result = JSON.parse(result)  
+  @result = JSON.parse(result)
+
  
  end 
 
@@ -165,6 +166,7 @@ require 'rest-client'
     result = RestClient.get "http://developer.goibibo.com/api/bus/search/?app_id=#{API_APP_ID_GOIBIBO}&app_key=#{API_APP_KEY_GOIBIBO}&format=json&source=#{params['origin']}&destination=#{params['destination']}&dateofdeparture=#{params['dep_date']}&dateofarrival=#{params['return_date']}"
    end
    @result = JSON.parse(result)  
+
  end  
   def get_hotel_list
    params['dep_date']  = params['dep_date'].gsub("-","")
@@ -172,9 +174,10 @@ require 'rest-client'
    city_id = City.find_by_city_name(params[:city]).city_id
   get_name_result = RestClient.get "http://developer.goibibo.com/api/voyager/get_hotels_by_cityid/?app_id=#{API_APP_ID_GOIBIBO}&app_key=#{API_APP_KEY_GOIBIBO}&city_id=#{city_id}"
   @hotel_name = JSON.parse(get_name_result)   
-  result = RestClient.get "http://developer.goibibo.com/api/voyager/get_hotels_by_cityid/?app_id=#{API_APP_ID_GOIBIBO}&app_key=#{API_APP_KEY_GOIBIBO}&city_id=#{city_id}&check_in=#{params['dep_date']}&check_out=#{params['return_date']}"
+  
+  result = RestClient.get "http://developer.goibibo.com/api/cyclone/?app_id=#{API_APP_ID_GOIBIBO}&app_key=#{API_APP_KEY_GOIBIBO}&city_id=#{city_id}&check_in=#{params['dep_date']}&check_out=#{params['return_date']}"
   @result = JSON.parse(result)   
-  binding.pry
+
   end 
   private
     # Use callbacks to share common setup or constraints between actions.

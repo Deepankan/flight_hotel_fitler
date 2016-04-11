@@ -67,8 +67,8 @@
   <%= form_tag get_list_bus_path do |f| %>
    <div class="row">
    <b><%= radio_button_tag 'trip_bus', 'one_way_bus', true, class: 'test'%>&nbsp;&nbsp;<label>One Way</label>&nbsp;&nbsp;&nbsp;&nbsp;<%= radio_button_tag 'trip_bus', 'return_way_bus', false, class: 'test'%>&nbsp;&nbsp;<label>Round Trip</label></b><br /><br />
-   <b>Departure City:</b><%= text_field_tag "origin" %>
-   <b>Destination City:</b><%= text_field_tag "destination" %><br /><br />
+   <b>Departure City:(Please Enter Full Name)</b><%= text_field_tag "origin" %>
+   <b>Destination City:(Please Enter Full Name)</b><%= text_field_tag "destination" %><br /><br />
    <b>Depart Date: </b><%= date_field_tag "dep_date", Date.today%>
    <b>Return Date: </b><%= date_field_tag "return_date", Date.today+1,:id => "return_date_bus", :disabled => true%><br /><br />
  
