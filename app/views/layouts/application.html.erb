@@ -7,13 +7,33 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div id="loading-indicator">
+ <%= image_tag("/assets/loading_new.gif", :id => "loading-indicator") %>
+</div>
 <%= yield %>
 
 </body>
+<style type="text/css">
+
+#loading-indicator {
+    position: fixed;
+    left: 409px;
+    top: 200px;
+    width: 25%;
+    height: 51%
+ }
+</style>
 <script type="text/javascript">
+$(function() {
+  $('#loading-indicator')
+    .hide()  // hide it initially.
+  
 $('form').submit(function(){
-alert(0)
+        $('#loading-indicator').show();
+        $('.hide_button').attr('disabled',true)
+   });
+   
 });
+
 </script>>
 </html>
