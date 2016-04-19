@@ -1,5 +1,6 @@
+
 <% if @result['response_code'] != 204%>
-<h1>Seat Avaliability</h1>
+<h1>Seat Avaliability</h1><br />
     	<label><b>Train No:</b> <%= @result['train_number']%></label>
     	<label><b>Train Name:</b> <%= @result['train_name']%></label>
     	<label><b>Train From:</b> <%= @result['from']['code']%></label>
