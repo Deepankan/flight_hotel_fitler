@@ -1,0 +1,17 @@
+<h1>Route Plan</h1>
+<%if @result['response_code'] !=200%>
+ <label style="color: red;"><b><i>Sorry Something went wrong. Please try again</i></b></label>
+<%else%>
+	<%@result['route'].each do |k|%>
+		<label><b>Route Name:</b> <%= k['no']%></label><br />
+		<label><b>Distance:</b> <%= k['train_name']%></label><br />
+		<label><b>Day:</b> <%= k['day']%></label>
+		<label><b>Halt:</b> <%= k['halt']%></label><br />
+		<label><b>Station Name:</b> <%= k['fullname']%></label>
+		<label><b>Code:</b> <%= k['code']%></label>
+		<label><b>State:</b> <%= k['state']%></label><br />
+		<label><b>Schedule Arrival :</b> <%= k['scharr']%></label>
+		<label><b>Schedule Departure :</b> <%= k['schdep']%></label><br />
+
+	<%end%>
+<%end%>	

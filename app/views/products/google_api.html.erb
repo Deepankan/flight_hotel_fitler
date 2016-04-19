@@ -1,0 +1,15 @@
+
+<h1>Search Flight through Google API</h1>
+
+ <%= form_tag list_flights_path do |f| %>
+  <div class="row">
+   <b>Departure City:</b><%= text_field_tag "origin" %>
+   <b>Destination City:</b><%= text_field_tag "destination" %>
+   <b>Date: </b><%= date_field_tag "date", Date.today%>
+  </div> <br />
+  <div class="actions" style="margin-left: 118px;">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+
+<br /> <br /><br />

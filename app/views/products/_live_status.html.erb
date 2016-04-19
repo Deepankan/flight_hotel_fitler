@@ -1,0 +1,31 @@
+
+<h1>Live Status </h1>
+<%if @result['response_code'] == 510%>
+<label style="color: red;"><b><i>Train not scheduled to run on the given date.</i></b></label>
+<%elsif @result['response_code'] == 200%>	
+
+<label><b>Position:</b> <%= @result['position']%></label><br />
+<label><b>Train No:</b> <%= @result['train_number']%></label><br />
+<label><b>Routes:</b> </label><br />
+<% @result['route'].each do |h| %>
+	<div class="col-md-6">
+	<%h.each do |k,v| %>
+      <label><b><%= k.titleize%>:</b> 
+	      <% if v.class != Hash%>
+	      		<%= v%><br />
+	      <%else%>
+	  
+	            <br />
+	      		<%v.each do |m,n|%>
+	      		<label><b><%= m.titleize%>:</b><%= n%></label><br />
+	      		<%end%>
+	      <%end%>
+      </label> 	  
+
+	<%end%>
+    </div>
+<%end%>
+
+<%else%>	
+<label style="color: red;"><b><i>Sorry Something went wrong. Please try again</i></b></label>
+<%end%>

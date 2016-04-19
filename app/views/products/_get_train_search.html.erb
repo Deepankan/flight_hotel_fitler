@@ -1,0 +1,8 @@
+<div class='row'>
+<label> <b>Train Name : </b><%= @result['train']['name']%></label>
+<label> <b>Train Number : </b><%= @result['train']['number']%></label><br />
+<label><b>Days:</b></label><br />
+<% @result['train']['days'].each do |h|%>
+<%= h['day-code']%> : <b><%= h['runs']%></b>&nbsp;&nbsp;&nbsp;
+<%end%><br />
+</div>

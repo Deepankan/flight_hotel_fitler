@@ -1,0 +1,20 @@
+<%@result['train'].each do |k|%>
+<div class='row'>
+<label><b>No : </b></label><%= k['no']%><br />
+<label><b>Name : </b></label><%= k['name']%>
+<label><b>Train No : </b></label><%= k['number']%><br />
+<label><b>Sechedule Departure Time : </b></label><%= k['src_departure_time']%>
+<label><b>Destination Arrival Time : </b></label><%= k['dest_arrival_time']%><br />
+<label><b>Total Travel Time : </b></label><%= k['travel_time']%><br />
+<label><b>From : </b></label><%= k['from']['name']+"(#{k['from']['code']})"%>
+<label><b>To : </b></label><%= k['to']['name']+"(#{k['to']['code']})"%><br />
+<label><b>Classes Available: </b></label><br />
+<%k['classes'].each do |h|%>
+ <%= RAILWAY_SITTING_CLASS.key(h['class-code'])%> : <b><%= h['available']%></b> &nbsp;&nbsp;&nbsp;
+<%end%><br />
+<label><b>Days: </b></label><br />
+<%k['days'].each do |h|%>
+ <%= h['day-code']%> : <b><%= h['runs']%></b>&nbsp;&nbsp;&nbsp;
+<%end%><br />
+</div><br />
+<%end%>

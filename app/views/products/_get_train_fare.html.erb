@@ -1,0 +1,23 @@
+
+<% if @result['response_code'] != 204%>
+
+<div class='row'>
+
+<label><b>Name : </b></label><%= @result['train']['name']%>
+<label><b>Train No : </b></label><%= @result['train']['number']%><br />
+<label><b>From : </b></label><%= @result['train']['from']['name']+"(#{@result['train']['from']['code']})"%>
+<label><b>To : </b></label><%= @result['train']['to']['name']+"(#{@result['train']['to']['code']})"%><br />
+<label><b>Quota: </b></label><%= @result['train']['quota']['name']+"(#{@result['train']['quota']['code']})"%><br />
+<label><b>Fares :</b></label><br />
+<%@result['train']['fares'].each do |h|%>
+ <label>Code</label> : <b><%= h['code']%></b> &nbsp;<label>Name</label> : <b><%= h['name']%>&nbsp;<label>Fare</label> : <b><%= h['fare']%><br />
+<%end%><br />
+
+</div><br />
+
+<%else%>
+
+
+ <label style="color: red;"><b><i>Sorry Something went wrong. Please try again</i></b></label>
+
+<%end%>

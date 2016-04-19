@@ -1,0 +1,195 @@
+<table>
+<thead>
+	
+</thead>
+<tbody>
+	<tr>
+         <td><h1>Live Train Status</h1>
+             <%= form_tag get_live_status_path ,:remote => true do |f| %>
+			  <div class="row">
+			  
+			   <b>Train No:</b><%= text_field_tag "train_no" %><br />
+			   
+			   <b>Date of Journey(Train Departed date): </b><%= date_field_tag "dep_date", Date.today%>
+			  
+			  </div> <br />
+			  <div class="actions" style="margin-left: 118px;">
+			    <%= submit_tag "Search" %>
+			  </div>
+			<% end %>
+         </td>
+         <td style="padding-left: 120px;"><h1>PNR Status</h1>
+
+             <%= form_tag get_pnr_status_path ,:remote => true do |f| %>
+			  <div class="row">
+			   <b>PNR No:</b><%= text_field_tag "pnr_no" %>
+			  </div> <br />
+			  <div class="actions" style="margin-left: 118px;">
+			    <%= submit_tag "Search" %>
+			  </div>
+			<% end %>
+			
+         </td>
+         <td style="padding-left: 131px;"><h1>Train Route</h1>
+
+               <%= form_tag get_train_route_path ,:remote => true do |f| %>
+				  <div class="row">
+				   <b>Train No:</b><%= text_field_tag "trn_no" %>
+				  </div> <br />
+				  <div class="actions" style="margin-left: 118px;">
+				    <%= submit_tag "Search" %>
+				  </div>
+				<% end %>
+         </td>
+        </tr> 
+        <tr> 
+        <td>
+          <h1>Seat Availability</h1>  
+             <%= form_tag get_seat_avail_path ,:remote => true do |f| %>
+			  <div class="row">
+			   <b>Train No:</b><%= text_field_tag "train_number" %><br />
+			   <b>Sorce Station:</b><%= text_field_tag "source_code" %><br />
+			   <b>Destination Station:</b><%= text_field_tag "dest_code" %><br />
+			   <b>Date of Journey:</b><%= date_field_tag "doj", Date.today%><br />
+			   <b>Class :</b><%= select_tag "class_code", options_for_select(RAILWAY_SITTING_CLASS)%><br />
+			   <b>Quota :</b><%= select_tag "quota_code", options_for_select(RAILWAY_SEAT_QUOTA)%><br />
+			  </div> <br />
+			  <div class="actions" style="margin-left: 118px;">
+			    <%= submit_tag "Search" %>
+			  </div>
+			<% end %>
+        </td>
+             <td style="padding-left: 120px;">
+          <h1>Train Between Station</h1>  
+             <%= form_tag get_train_between_path ,:remote => true do |f| %>
+			  <div class="row">
+			   <b>Sorce Station:</b><%= text_field_tag "source_code" %><br />
+			   <b>Destination Station:</b><%= text_field_tag "dest_code" %><br />
+			   <b>Date of Journey:</b><%= date_field_tag "doj", Date.today%><br />
+			   
+			  </div> <br />
+			  <div class="actions" style="margin-left: 118px;">
+			    <%= submit_tag "Search" %>
+			  </div>
+			<% end %>
+        </td>
+              <td style="padding-left: 131px;">
+          <h1>Search by Train Name/Number</h1>  
+             <%= form_tag get_train_search_path ,:remote => true do |f| %>
+        <div class="row">
+         <b>Train Name/ Number:</b><%= text_field_tag "train_name" %><br />
+         
+         
+        </div> <br />
+        <div class="actions" style="margin-left: 118px;">
+          <%= submit_tag "Search" %>
+        </div>
+      <% end %>
+        </td>
+	   </tr>
+     <tr>
+           <td>
+
+               <h1>Fare Enquiry</h1>  
+             <%= form_tag get_train_fare_path ,:remote => true do |f| %>
+        <div class="row">
+         <b>Train No:</b><%= text_field_tag "train_number" %><br />
+         <b>Sorce Station:</b><%= text_field_tag "source_code" %><br />
+         <b>Destination Station:</b><%= text_field_tag "dest_code" %><br />
+         <b>Date of Journey:</b><%= date_field_tag "doj", Date.today%><br />
+         <b>Age:</b><%= text_field_tag "age" %><br />
+         <b>Quota :</b><%= select_tag "quota_code", options_for_select(RAILWAY_SEAT_QUOTA)%><br />
+        </div> <br />
+        <div class="actions" style="margin-left: 118px;">
+          <%= submit_tag "Search" %>
+        </div>
+      <% end %>
+           </td>  
+           <td style="padding-left: 120px;">
+            <h1>Train Arrival At Station</h1>  
+             <%= form_tag get_train_arrival_path ,:remote => true do |f| %>
+              <div class="row">
+               
+               <b>Sorce Station Code:</b><%= text_field_tag "source_code" %><br />
+                
+               <b>Hours to Search within :</b><%= select_tag "hour", options_for_select(['2','4'])%><br />
+              </div> <br />
+              <div class="actions" style="margin-left: 118px;">
+                <%= submit_tag "Search" %>
+              </div>
+            <% end %>
+           </td>
+           <td style="padding-left: 131px;">
+                          <h1>List Canceled Train</h1>  
+             <%= form_tag get_cancel_train_path ,:remote => true do |f| %>
+        <div class="row">
+        
+         <b>Date :</b><%= date_field_tag "doj", Date.today%><br />
+         
+        </div> <br />
+        <div class="actions" style="margin-left: 118px;">
+          <%= submit_tag "Search" %>
+        </div>
+        <%end%>
+           </td>
+     </tr>
+     <tr>
+     <td>
+          <h1>Search Station Code</h1>  
+             <%= form_tag get_search_station_code_path ,:remote => true do |f| %>
+        <div class="row">
+        
+          <b> Station Name:</b><%= text_field_tag "source_name" %><br />
+         
+        </div> <br />
+        <div class="actions" style="margin-left: 118px;">
+          <%= submit_tag "Search" %>
+        </div>
+        <%end%>
+      </td>  
+       <td style="padding-left: 120px;">
+          <h1>Search Station Name</h1>  
+             <%= form_tag get_search_station_name_path ,:remote => true do |f| %>
+        <div class="row">
+        
+          <b> Station Code:</b><%= text_field_tag "source_code" %><br />
+         
+        </div> <br />
+        <div class="actions" style="margin-left: 118px;">
+          <%= submit_tag "Search" %>
+        </div>
+        <%end%>
+      </td>  
+     </tr>
+</tbody>
+</table>
+
+
+<div id="result_rail"></div>
+
+<style type="text/css">
+
+#loading-indicator {
+    position: fixed;
+    left: 409px;
+    top: 200px;
+    width: 25%;
+    height: 51%
+ }
+</style>
+<script type="text/javascript">
+ $('#loading-indicator').hide()
+$(function() {
+  $('#loading-indicator')
+    .hide()  // hide it initially.
+  
+ $(document).ajaxStart(function() {
+        $('#loading-indicator').show();
+        $('.hide_button').attr('disabled',true)
+   });
+   $(document).ajaxStop(function() {
+        $('#loading-indicator').hide();
+        $('.hide_button').attr('disabled',false)
+   });
+});
+</script>

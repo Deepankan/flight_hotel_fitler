@@ -1,0 +1,47 @@
+
+<h1>Live Status </h1>
+<%if @result['response_code'] == 410%>
+<label style="color: red;"><b><i>PNR not yet generated </i></b></label>
+<%elsif @result['response_code'] == 200%>	
+
+<label><b>Train Name:</b> <%= @result['train_name']%></label>
+<label><b>Train No:</b> <%= @result['train_number']%></label><br />
+<label><b>PNR  No:</b> <%= @result['pnr']%></label>
+<label><b>Date of Journey:</b> </label><%= @result['doj']%><br />
+<label><b>Chart Prepared:</b> </label><%= @result['chart_prepared']%>
+<label><b>Class:</b> </label><%= @result['class']%><br />
+<label><b>Total Passenger:</b> </label><%= @result['total_passengers']%><br />
+
+<label><b>Train Start Date:</b> </label><%= @result['train_start_date']['day'].to_s + "- "+ @result['train_start_date']['month'].to_s + "-" + @result['train_start_date']['year'].to_s%><br />
+<label><b>From Station:</b> </label><%= @result['from_station']['name']+"(#{@result['from_station']['code']})"%>
+<label><b>Boarding Point :</b> </label><%= @result['boarding_point']['name']+"(#{@result['boarding_point']['code']})"%><br />
+<label><b>To Station :</b> </label><%= @result['to_station']['name']+"(#{@result['to_station']['code']})"%>
+<label><b>Reservation Upto  :</b> </label><%= @result['reservation_upto']['name']+"(#{@result['reservation_upto']['code']})"%>
+<label><b>Passenger Details : </b></label><br />
+<table>
+	<thead>
+		<th>
+		<td>S.No</td>
+		<td>Booking Status</td>
+		<td>Current Status</td>
+		<td>Coach Position</td>
+		
+		</th>
+	</thead>
+	<tbody>
+	   <% @result['passengers'].each do |k|%>
+       <tr>
+           <td><%= k['no']%></td>
+           <td><%= k['booking_status']%></td>
+           <td><%= k['current_status']%></td>
+           <td><%= k['coach_position']%></td>
+       </tr>
+       <%end%>
+	</tbody>
+</table>
+
+<%elsif @result['response_code'] == 404%>
+<label style="color: red;"><b><i>Service Down / Source not responding</i></b></label>
+<%else%>	
+<label style="color: red;"><b><i>Sorry Something went wrong. Please try again</i></b></label>
+<%end%>

@@ -1,0 +1,29 @@
+<% if @result['response_code'] != 204%>
+<h1>Seat Avaliability</h1>
+    	<label><b>Train No:</b> <%= @result['train_number']%></label>
+    	<label><b>Train Name:</b> <%= @result['train_name']%></label>
+    	<label><b>Train From:</b> <%= @result['from']['code']%></label>
+    	<label><b>Train To:</b> <%= @result['to']['code']%></label>
+    	<label><b>Train Class:</b> <%= @result['class']['class_name']+"#{@result['class']['class_code']}"%></label>
+    				 
+        <label><b><i>Availability : </i></b></label> <br />
+        <table>
+         <thead>
+         <th>Date</th>
+         <th>Status</th>
+         </thead>
+         <tbody>
+         <% @result['availability'].each do |k|%>
+           <tr>
+              <td><%= k['date']%></td>
+              <td><%= k['status']%></td>
+           </tr>
+         <%end%>
+         </tbody>
+        </table>
+       
+
+	<%end%>
+    <%else%>
+    <label style="color: red;">Something went wrong, Please try again</label>
+    <%end%>

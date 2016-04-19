@@ -9,7 +9,11 @@ require 'rest-client'
     @products = Product.all
     @seatingclass = {'Economy' => 'E','Bussiness Class' => 'B'}
   end
-
+  def goibibo
+    @seatingclass = {'Economy' => 'E','Bussiness Class' => 'B'}
+  end
+  def google_api
+  end
   # GET /products/1
   # GET /products/1.json
   def show
@@ -185,6 +189,75 @@ require 'rest-client'
     @key_hotel[k]['price'] = v['mp']
   end  
   end 
+  def get_live_status
+   params['dep_date']  = params['dep_date'].gsub("-","")
+   result = RestClient.get "http://api.railwayapi.com/live/train/#{params['train_no']}/doj/#{params['dep_date']}/apikey/#{API_RAILWAY_KEY}/"
+   @result = JSON.parse(result)   
+  end  
+  def get_pnr_status
+   result = RestClient.get "http://api.railwayapi.com/pnr_status/pnr/#{params['pnr_no']}/apikey/#{API_RAILWAY_KEY}/"
+   @result = JSON.parse(result)   
+  end  
+  def get_train_route
+
+   result = RestClient.get "http://api.railwayapi.com/route/train/#{params['trn_no']}/apikey/#{API_RAILWAY_KEY}/"
+   @result = JSON.parse(result)   
+  end
+  
+  def get_seat_avail
+    
+    params['doj'] = params['doj'].to_datetime.strftime("%d-%m-%Y")
+   
+      result = RestClient.get "http://api.railwayapi.com/check_seat/train/#{params['train_number']}/source/#{params['source_code']}/dest/#{params['dest_code']}/date/#{params['doj']}/class/#{params['class_code']}/quota/#{params['quota_code']}/apikey/#{API_RAILWAY_KEY}/"
+      @result = JSON.parse(result)   
+   
+   
+
+  end
+
+  def get_train_between
+    params['doj'] = params['doj'].to_datetime.strftime("%d-%m")
+     result = RestClient.get "http://api.railwayapi.com/between/source/#{params['source_code']}/dest/#{params['dest_code']}/date/#{params['doj']}/apikey/#{API_RAILWAY_KEY}/"
+     @result = JSON.parse(result)   
+  end  
+  def get_train_search
+    result = RestClient.get "http://api.railwayapi.com/name_number/train/#{params['train_name']}//apikey/#{API_RAILWAY_KEY}/"
+     @result = JSON.parse(result) 
+  end  
+
+  def get_train_fare
+    params['doj'] = params['doj'].to_datetime.strftime("%d-%m-%Y")
+    result = RestClient.get "http://api.railwayapi.com/fare/train/#{params['train_number']}/source/#{params['source_code']}/dest/#{params['dest_code']}/age/#{params['age']}/quota/#{params['quota_code']}/doj/#{params['doj']}/apikey/#{API_RAILWAY_KEY}/"
+          
+     @result = JSON.parse(result)  
+  end
+
+  def get_train_arrival
+    
+    result = RestClient.get "http://api.railwayapi.com/arrivals/station/#{params['source_code']}/hours/#{params['hour']}/apikey/#{API_RAILWAY_KEY}/"
+          
+     @result = JSON.parse(result)  
+  end
+
+  def get_cancel_train
+    params['doj'] = params['doj'].to_datetime.strftime("%d-%m-%Y")
+    result = RestClient.get "http://api.railwayapi.com/cancelled/date/#{params['doj']}/apikey/#{API_RAILWAY_KEY}/"
+          
+     @result = JSON.parse(result)  
+  end
+
+  def get_search_station_code
+
+    result = RestClient.get "http://api.railwayapi.com/name_to_code/station/#{params['source_name']}/apikey/#{API_RAILWAY_KEY}/"
+          
+     @result = JSON.parse(result) 
+  end
+
+  def get_search_station_name
+     result = RestClient.get "http://api.railwayapi.com/code_to_name/code/#{params['source_code']}/apikey/#{API_RAILWAY_KEY}/"
+          
+     @result = JSON.parse(result) 
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

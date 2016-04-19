@@ -1,0 +1,12 @@
+<h1>Search Products through Semantic3 API</h1>
+
+ 
+
+ <%= form_tag list_product_path do |f| %>
+  <b>Enter the Product :  </b><%= text_field_tag "search" %>
+  <br /> <br />
+  <div class="actions" style="margin-left: 118px;">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+<br /> <br /><br />

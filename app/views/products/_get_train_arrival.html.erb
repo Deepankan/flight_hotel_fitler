@@ -1,0 +1,20 @@
+
+
+
+<label><b>Name : </b></label><%= @result['station']%><br />
+<label><b>Total : </b></label><%= @result['total']%>
+
+
+<%@result['train'].each do |k|%>
+<div class='row'>
+<label><b>Name : </b></label><%= k['name']%>
+<label><b>Train No : </b></label><%= k['number']%><br />
+<label><b>Schedule Arrival : </b></label><%= k['scharr']%>
+<label><b>Delay Arrival : </b></label><%= k['delayarr']%><br />
+<label><b>Sechedule Departure Time : </b></label><%= k['schdep']%>
+<label><b>Actual Departure Time : </b></label><%= k['actdep']%><br />
+<label><b>Delay Departure Time : </b></label><%= k['delaydep']%>
+<label><b>Actaul Arrival Time : </b></label><%= k['actarr']%><br />
+</div><br />
+<%end%><br />
+

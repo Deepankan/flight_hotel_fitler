@@ -1,0 +1,69 @@
+<div class="row"><h1> Goibibo APIS</h1><br /><br />
+ <h1>Flight Search</h1>
+  <%= form_tag go_search_flights_path do |f| %>
+  <div class="row">
+   <b><%= radio_button_tag 'trip', 'one_way', true, class: 'test'%>&nbsp;&nbsp;<label>One Way</label>&nbsp;&nbsp;&nbsp;&nbsp;<%= radio_button_tag 'trip', 'return_way', false, class: 'test'%>&nbsp;&nbsp;<label>Round Trip</label></b><br /><br />
+   <b>Departure City:</b><%= text_field_tag "origin" %>
+   <b>Destination City:</b><%= text_field_tag "destination" %><br /><br />
+   <b>Depart Date: </b><%= date_field_tag "dep_date", Date.today%>
+   <b>Return Date: </b><%= date_field_tag "return_date", Date.today+1, :disabled => true%><br /><br />
+   <b>Class: </b><%= select_tag "seatingclass", options_for_select(@seatingclass)%>
+   <b>Travellers: </b><%= text_field_tag "adults", 1,:id => 'adult'%><br />
+   <div id="adult_hide">
+   <label>Adults : </label>><%= text_field_tag "adults", 1%>
+   <label>Childrens : </label>><%= text_field_tag "children", 0%>
+   <label>Infantss : </label>><%= text_field_tag "infants", 0%>
+   </div>
+  </div> <br />
+  <div class="actions" style="margin-left: 118px;">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+<br /><br /><br />
+ <h1>Filter Fight By Price</h1>
+  <%= form_tag get_min_price_flights_path do |f| %>
+  <div class="row">
+ 
+   <b>Departure City:</b><%= text_field_tag "origin" %>
+   <b>Destination City:</b><%= text_field_tag "destination" %><br /><br />
+   <label>Start & End date give minimum fare between the given range</label>
+   <b>Start  Date: </b><%= date_field_tag "dep_date", Date.today%>
+   <b>End Date: </b><%= date_field_tag "return_date", Date.today %><br /><br />
+   <b>Class: </b><%= select_tag "seatingclass", options_for_select(@seatingclass)%>
+  </div> <br />
+  <div class="actions" style="margin-left: 118px;">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+
+<br /><br /><br />
+<h1>Search Bus</h1>
+  <%= form_tag get_list_bus_path do |f| %>
+   <div class="row">
+   <b><%= radio_button_tag 'trip_bus', 'one_way_bus', true, class: 'test'%>&nbsp;&nbsp;<label>One Way</label>&nbsp;&nbsp;&nbsp;&nbsp;<%= radio_button_tag 'trip_bus', 'return_way_bus', false, class: 'test'%>&nbsp;&nbsp;<label>Round Trip</label></b><br /><br />
+   <b>Departure City:(Please Enter Full Name)</b><%= text_field_tag "origin" %>
+   <b>Destination City:(Please Enter Full Name)</b><%= text_field_tag "destination" %><br /><br />
+   <b>Depart Date: </b><%= date_field_tag "dep_date", Date.today%>
+   <b>Return Date: </b><%= date_field_tag "return_date", Date.today+1,:id => "return_date_bus", :disabled => true%><br /><br />
+ 
+  </div> <br />
+  <div class="actions" style="margin-left: 118px;">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+
+<br /><br /><br />
+<h1>Search Hotel</h1>
+  <%= form_tag get_hotel_list_path do |f| %>
+   <div class="row">
+  
+   <b>Enter City:</b><%= text_field_tag "city" %><br />
+     <b>Check In Date: </b><%= date_field_tag "dep_date", Date.today%>
+   <b>Check Out Date: </b><%= date_field_tag "return_date", Date.today+1%><br /><br />
+ 
+  </div> <br />
+  <div class="actions" style="margin-left: 118px;">
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+</div>

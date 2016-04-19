@@ -1,0 +1,23 @@
+
+
+
+<label><b>Last Updated Date: </b></label><%= @result['last_updated']['date']%><br />
+<label><b>Last Updated Time : </b></label><%= @result['last_updated']['time']%><br /><br /><br /><br /><br /><br />
+
+<% if @result['trains'].present?%>
+<%@result['trains'].each do |k|%>
+
+<div class='row'>
+<label><b>Name : </b></label><%=  k['train']['name']%>
+<label><b>Train No : </b></label><%= k['train']['number']%><br />
+<label><b>Start Time : </b></label><%= k['train']['start_time']%>
+<label><b>Type : </b></label><%= k['train']['type']%><br />
+<label><b>Destination : </b></label><%= k['dest']['name'] + "(#{k['dest']['code']})"%>
+<label><b>Source : </b></label><%= k['source']['name'] + "(#{k['source']['code']})"%><br />
+
+</div><br />
+
+<%end%><br />
+<%else%>
+<label style="color: red;">Sorry No train has been canceled on this date</label>>
+<%end%>

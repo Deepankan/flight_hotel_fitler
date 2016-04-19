@@ -1,0 +1,13 @@
+<% if @result['stations'].present?%>
+<%@result['stations'].each do |k|%>
+<div class='row'>
+
+<label><b>Name : </b></label><%= k['fullname']%>
+<label><b>Code : </b></label><%= k['code']%><br />
+<label><b>State : </b></label><%= k['state']%><br />
+
+</div><br />
+<%end%>
+<%else%>
+<label style="color: red;"><b><i>Invalid Station Code. Please try again</i></b></label>
+<%end%>
